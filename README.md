@@ -86,6 +86,8 @@ The Atari 600XL, part of the Atari 8-bit family, was launched in 1983 as a low-e
 
 To develop a game for the Atari 600XL, one would write the game in Atari BASIC or Assembly, test it on an emulator or the actual hardware, and manipulate player/missile graphics in memory. To grasp the specifics of game development on the Atari 600XL, resources on Atari BASIC or Atari 600XL game development are recommended. To achieve success, understanding the hardware capabilities and mastering programming in Atari BASIC or Assembly are crucial, as is gradual progression from simple to complex projects. Active online Atari communities offer ample resources and support.
 
+### A business application 
+
 
 
 
