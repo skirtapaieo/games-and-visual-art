@@ -46,6 +46,8 @@ In conclusion, ECS BASIC has limitations. It was designed for educational purpos
 
 ### Intellivision - a first "game" 
 
+´´´
+BASIC
 10 PRINT "Sprite Collision Test"
 20 PRINT "Loading Sprite..."
 30 FOR I = 5000 TO 5015
@@ -76,9 +78,7 @@ In conclusion, ECS BASIC has limitations. It was designed for educational purpos
 1000 ' Collision Check
 1010 IF PEEK(53264) AND 3 THEN PRINT "Collision Detected."
 1020 RETURN
-
-
-Accessign 
+´´´
 
 ## Atari 600 XL 
 
