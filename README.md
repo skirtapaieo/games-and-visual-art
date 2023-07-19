@@ -121,8 +121,4 @@ REM Inventory data
 ```
 
 
-# ABC-80
-
-##
-
 
