@@ -3,7 +3,9 @@ Doing small games and visual art
 
 
 
-# Intellivision 
+# Background 
+
+"# Intellivision 
 
 
 The Intellivision Entertainment Computer System (ECS) was essentially an add-on for the Intellivision that turned it into a rudimentary personal computer, with the capability to run a variant of the BASIC programming language.
@@ -42,7 +44,7 @@ On a final note, be aware that messing with the memory directly can be risky—i
 In conclusion, ECS BASIC has limitations. It was designed for educational purposes and to demonstrate the potential of the ECS, rather than as a serious tool for game development. Many of the Intellivision's features are difficult or impossible to access from BASIC, which is one reason why commercial Intellivision games were written in assembly language rather than BASIC.
 
 
-# Atari 600 XL 
+## Atari 600 XL 
 
 The Atari 600XL was a home computer and part of the Atari 8-bit family, released by Atari, Inc. in 1983. It was the low-end replacement for the Atari 400, and included the newer FREDDIE chip, which improved memory management.
 
