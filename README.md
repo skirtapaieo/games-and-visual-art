@@ -6,7 +6,6 @@ Doing small games and visual art
 # Intellivision 
 
 
-
 The Intellivision Entertainment Computer System (ECS) was essentially an add-on for the Intellivision that turned it into a rudimentary personal computer, with the capability to run a variant of the BASIC programming language.
 
 The ECS BASIC was provided in a ROM cartridge that plugged into the Intellivision's cartridge slot. It allowed you to write and run simple BASIC programs.
