@@ -44,6 +44,41 @@ On a final note, be aware that messing with the memory directly can be risky—i
 
 In conclusion, ECS BASIC has limitations. It was designed for educational purposes and to demonstrate the potential of the ECS, rather than as a serious tool for game development. Many of the Intellivision's features are difficult or impossible to access from BASIC, which is one reason why commercial Intellivision games were written in assembly language rather than BASIC.
 
+## Intellivision - a first "game" 
+
+10 PRINT "Sprite Collision Test"
+20 PRINT "Loading Sprite..."
+30 FOR I = 5000 TO 5015
+40 POKE I, 255 ' Set sprite data
+50 NEXT I
+60 PRINT "Sprite Loaded."
+
+70 PRINT "Starting Game..."
+80 POKE 53248, 0 ' Set sprite 1 X position
+90 POKE 53249, 0 ' Set sprite 1 Y position
+100 POKE 53250, 5000 ' Set sprite 1 image data pointer
+
+110 POKE 53252, 50 ' Set sprite 2 X position
+120 POKE 53253, 50 ' Set sprite 2 Y position
+130 POKE 53254, 5000 ' Set sprite 2 image data pointer
+
+140 PRINT "Game Running."
+150 GOSUB 1000 ' Check for collision
+
+160 FOR I = 1 TO 100
+170 POKE 53248, PEEK(53248) + 1 ' Move sprite 1 X position
+180 GOSUB 1000 ' Check for collision
+190 NEXT I
+
+200 PRINT "Game Over."
+210 END
+
+1000 ' Collision Check
+1010 IF PEEK(53264) AND 3 THEN PRINT "Collision Detected."
+1020 RETURN
+
+
+Accessign 
 
 ## Atari 600 XL 
 
