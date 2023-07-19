@@ -88,7 +88,7 @@ To develop a game for the Atari 600XL, one would write the game in Atari BASIC o
 
 ### A business application 
 
-This is far from it - but I used the LIST command to help the inventory workers to create the correct inventory. Not a lot of code! 
+Not exactly right but close enough to create the "simplest" inventory program: 
 
 ``` BASIC 
 10 PRINT "MENU"
