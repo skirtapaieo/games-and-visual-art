@@ -46,8 +46,8 @@ In conclusion, ECS BASIC has limitations. It was designed for educational purpos
 
 ### Intellivision - a first "game" 
 
-```
-BASIC
+``` BASIC
+
 10 PRINT "Sprite Collision Test"
 20 PRINT "Loading Sprite..."
 30 FOR I = 5000 TO 5015
