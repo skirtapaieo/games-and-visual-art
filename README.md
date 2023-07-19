@@ -5,7 +5,8 @@ Doing small games and visual art
 
 # History 
 
-# Intellivision 
+
+## Intellivision 
 
 
 The Intellivision Entertainment Computer System (ECS) was essentially an add-on for the Intellivision that turned it into a rudimentary personal computer, with the capability to run a variant of the BASIC programming language.
