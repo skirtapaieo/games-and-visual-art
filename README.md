@@ -3,7 +3,7 @@ Doing small games and visual art
 
 
 
-# Background 
+# History 
 
 # Intellivision 
 
