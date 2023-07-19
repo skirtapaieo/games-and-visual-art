@@ -44,7 +44,7 @@ On a final note, be aware that messing with the memory directly can be risky—i
 
 In conclusion, ECS BASIC has limitations. It was designed for educational purposes and to demonstrate the potential of the ECS, rather than as a serious tool for game development. Many of the Intellivision's features are difficult or impossible to access from BASIC, which is one reason why commercial Intellivision games were written in assembly language rather than BASIC.
 
-## Intellivision - a first "game" 
+### Intellivision - a first "game" 
 
 10 PRINT "Sprite Collision Test"
 20 PRINT "Loading Sprite..."
