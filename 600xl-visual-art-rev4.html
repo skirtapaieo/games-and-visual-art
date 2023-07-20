@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Atari Demo</title>
+  <style>
+    body {
+      background-color: #000;  /* Set the background color to black */
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      border: 1px solid black;
+      display: block;
+    }
+
+    /* Use a suitable fallback font for the letters */
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+  </style>
+</head>
+<body>
+  <canvas id="demoCanvas"></canvas>
+
+  <script>
+    // Get the canvas element
+    const canvas = document.getElementById('demoCanvas');
+    const context = canvas.getContext('2d');
+
+    // Set the canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Load sound files
+    const sound = new Audio('8-bit-david-feslyan.mp3');
+    sound.loop = true;
+
+    // Define the letter class
+    class Letter {
+      constructor(x, y, letter) {
+        this.x = x;
+        this.y = y;
+        this.letter = letter;
+        this.angle = 0;
+        this.amplitude = Math.random() * 100 + 50;  // Random amplitude for up and down movement
+        this.frequency = Math.random() * 0.02 + 0.01;  // Random frequency for up and down movement
+        this.color = `rgb(${getRandomColorValue()}, ${getRandomColorValue()}, ${getRandomColorValue()})`;
+      }
+
+      update() {
+        this.angle += 0.1;  // Increase the angle increment for faster movement
+        this.x -= 4;  // Adjust the value to control the scrolling speed from left to right
+
+        // Reset the position of the letter to the left when it reaches the right edge
+        if (this.x + (context.measureText(this.letter).width) < 0) {
+          this.x = canvas.width;
+          this.amplitude = Math.random() * 100 + 50;  // Generate a new random amplitude for up and down movement
+          this.frequency = Math.random() * 0.02 + 0.01;  // Generate a new random frequency for up and down movement
+        }
+
+        // Calculate the vertical position based on the amplitude and frequency
+        this.y = canvas.height / 2 + Math.sin(this.angle * this.frequency) * this.amplitude;
+      }
+
+      draw() {
+        context.font = '48px "VT323"';  // Use the fallback font here
+        context.fillStyle = this.color;
+        context.fillText(this.letter, this.x, this.y);
+      }
+    }
+
+    // Create the letter objects
+    const letters = [];
+    const text = 'Atari XL';
+    const letterSpacing = 60;  // Adjust the letter spacing based on the font size
+    const yPosition = canvas.height / 2;
+    let xPos = (canvas.width - (text.length * letterSpacing)) / 2;
+
+    for (let i = 0; i < text.length; i++) {
+      const letter = new Letter(xPos, yPosition, text[i]);
+      letters.push(letter);
+      xPos += letterSpacing;
+    }
+
+    // Generate random color values between 50 and 200 for contrast
+    function getRandomColorValue() {
+      return Math.floor(Math.random() * 151) + 50;
+    }
+
+    // Animation loop
+    function animate() {
+      // Clear the canvas
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw the letters
+      for (const letter of letters) {
+        letter.update();
+        letter.draw();
+      }
+
+      // Request the next animation frame
+      requestAnimationFrame(animate);
+    }
+
+    // Start the animation
+    animate();
+
+    // Play the sound loop
+    sound.play();
+  </script>
+</body>
+</html>
