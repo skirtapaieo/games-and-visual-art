@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Demo Scene with Letter and Sound</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="demoCanvas"></canvas>
+
+  <script>
+    // Get the canvas element
+    const canvas = document.getElementById('demoCanvas');
+    const context = canvas.getContext('2d');
+
+    // Set the canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Load sound files
+    const letterSound = new Audio('letter.wav');
+    const hitSound = new Audio('hit.wav');
+
+    // Define the letter class
+    class Letter {
+      constructor(x, y, color, letter) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.letter = letter;
+        this.dx = 2;
+      }
+
+      update() {
+        this.x += this.dx;
+
+        // Play sound when hitting the canvas edges
+        if (this.x + 20 > canvas.width || this.x < 0) {
+          hitSound.currentTime = 0;
+          hitSound.play();
+        }
+      }
+
+      draw() {
+        context.font = '24px Arial';
+        context.fillStyle = this.color;
+        context.fillText(this.letter, this.x, this.y);
+      }
+    }
+
+    // Create the letter object
+    const letter = new Letter(0, canvas.height / 2, 'red', 'A');
+
+    // Animation loop
+    function animate() {
+      // Clear the canvas
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw the letter
+      letter.update();
+      letter.draw();
+
+      // Request the next animation frame
+      requestAnimationFrame(animate);
+    }
+
+    // Start the animation
+    animate();
+
+    // Play letter sound
+    letterSound.currentTime = 0;
+    letterSound.play();
+  </script>
+</body>
+</html>
