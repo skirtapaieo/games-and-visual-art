@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Demo Scene with Atari XL Letters and Sound</title>
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      border: 1px solid black;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="demoCanvas"></canvas>
+
+  <script>
+    // Get the canvas element
+    const canvas = document.getElementById('demoCanvas');
+    const context = canvas.getContext('2d');
+
+    // Set the canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Load sound files
+    const sound = new Audio('8-bit-david-feslyan.mp3');
+    sound.loop = true;
+
+    // Define the letter class
+    class Letter {
+      constructor(x, y, letter) {
+        this.x = x;
+        this.y = y;
+        this.letter = letter;
+        this.angle = 0;
+        this.color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+      }
+
+      update() {
+        this.angle += 0.1;
+        this.x += Math.sin(this.angle) * 5;
+      }
+
+      draw() {
+        context.font = '64px Atari XL';  // Increase the font size here
+        context.fillStyle = this.color;
+        context.fillText(this.letter, this.x, this.y);
+      }
+    }
+
+    // Create the letter objects
+    const letters = [];
+    const text = 'Atari XL';
+    const letterSpacing = 55;
+    const yPosition = canvas.height / 2;
+    let xPos = (canvas.width - (text.length * letterSpacing)) / 2;
+
+    for (let i = 0; i < text.length; i++) {
+      const letter = new Letter(xPos, yPosition, text[i]);
+      letters.push(letter);
+      xPos += letterSpacing;
+    }
+
+    // Animation loop
+    function animate() {
+      // Clear the canvas
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw the letters
+      for (const letter of letters) {
+        letter.update();
+        letter.draw();
+      }
+
+      // Request the next animation frame
+      requestAnimationFrame(animate);
+    }
+
+    // Start the animation
+    animate();
+
+    // Play the sound loop
+    sound.play();
+  </script>
+</body>
+</html>
