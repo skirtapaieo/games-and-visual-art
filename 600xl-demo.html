@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Demo Scene with Atari XL Letters and Sound</title>
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      border: 1px solid black;
+      display: block;
+    }
+  </style>
+  <style>
+    @font-face {
+      font-family: 'Atari XL';
+      src: url('AtariXL-Regular.ttf');
+    }
+  </style>
+  <style>
+    /* Use a suitable fallback font for the letters */
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+  </style>
+</head>
+<body>
+  <canvas id="demoCanvas"></canvas>
+
+  <script>
+    // Get the canvas element
+    const canvas = document.getElementById('demoCanvas');
+    const context = canvas.getContext('2d');
+
+    // Set the canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Load sound files
+    const sound = new Audio('8-bit-david-feslyan.mp3');
+    sound.loop = true;
+
+    // Define the letter classes for each demo
+    class LetterDemo1 {
+      constructor(x, y, letter) {
+        this.x = x;
+        this.y = y;
+        this.letter = letter;
+        this.angle = 0;
+        this.color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+      }
+
+      update() {
+        this.angle += 0.1;
+        this.x += Math.sin(this.angle) * 5;
+      }
+
+      draw() {
+        context.font = '64px "Atari XL"';
+        context.fillStyle = this.color;
+        context.fillText(this.letter, this.x, this.y);
+      }
+    }
+
+    class LetterDemo2 {
+      constructor(x, y, letter) {
+        this.x = x;
+        this.y = y;
+        this.letter = letter.toUpperCase();
+        this.angle = 0;
+      }
+
+      update() {
+        this.angle += 0.1;
+        this.x -= 6;
+        if (this.x + (context.measureText(this.letter).width) < 0) {
+          this.x = canvas.width;
+        }
+        this.y = canvas.height / 2 + Math.sin(this.angle * 0.2) * 100;
+      }
+
+      draw() {
+        const color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+        context.font = '32px "VT323"';
+        context.fillStyle = color;
+        context.fillText(this.letter, this.x, this.y);
+      }
+    }
+
+    class LetterDemo3 {
+      constructor(x, y, letter) {
+        this.x = x;
+        this.y = y;
+        this.letter = letter;
+        this.angle = 0;
+        this.color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+      }
+
+      update() {
+        this.angle += 0.1;
+        this.x += Math.cos(this.angle) * 3;
+        this.y += Math.sin(this.angle) * 3;
+      }
+
+      draw() {
+        context.font = '64px "Atari XL"';
+        context.fillStyle = this.color;
+        context.fillText(this.letter, this.x, this.y);
+      }
+    }
+
+    class LetterDemo4 {
+      constructor(x, y, letter) {
+        this.x = x;
+        this.y = y;
+        this.letter = letter;
+        this.angle = 0;
+        this.color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+      }
+
+      update() {
+        this.angle += 0.1;
+        this.x += Math.sin(this.angle) * 5;
+        this.y += Math.cos(this.angle) * 5;
+      }
+
+      draw() {
+        context.font = '64px "Atari XL"';
+        context.fillStyle = this.color;
+        context.fillText(this.letter, this.x, this.y);
+      }
+    }
+
+    class LetterDemo5 {
+      constructor(x, y, letter) {
+        this.x = x;
+        this.y = y;
+        this.letter = letter;
+        this.angle = 0;
+        this.color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+      }
+
+      update() {
+        this.angle += 0.1;
+        this.x += Math.sin(this.angle) * 5;
+        this.y += Math.cos(this.angle) * 5;
+      }
+
+      draw() {
+        context.font = '64px "Atari XL"';
+        context.fillStyle = this.color;
+        context.fillText(this.letter, this.x, this.y);
+      }
+    }
+
+    // Create the letter objects for each demo
+    const lettersDemo1 = [];
+    const textDemo1 = 'Demo 1';
+    const letterSpacingDemo1 = 120;
+    const yPositionDemo1 = canvas.height / 2;
+    let xPosDemo1 = (canvas.width - (textDemo1.length * letterSpacingDemo1)) / 2;
+
+    for (let i = 0; i < textDemo1.length; i++) {
+      const letter = new LetterDemo1(xPosDemo1, yPositionDemo1, textDemo1[i]);
+      lettersDemo1.push(letter);
+      xPosDemo1 += letterSpacingDemo1;
+    }
+
+    const lettersDemo2 = [];
+    const textDemo2 = 'Demo 2';
+    const letterSpacingDemo2 = 120;
+    const yPositionDemo2 = canvas.height / 2;
+    let xPosDemo2 = (canvas.width - (textDemo2.length * letterSpacingDemo2)) / 2;
+
+    for (let i = 0; i < textDemo2.length; i++) {
+      const letter = new LetterDemo2(xPosDemo2, yPositionDemo2, textDemo2[i]);
+      lettersDemo2.push(letter);
+      xPosDemo2 += letterSpacingDemo2;
+    }
+
+    const lettersDemo3 = [];
+    const textDemo3 = 'Demo 3';
+    const letterSpacingDemo3 = 120;
+    const yPositionDemo3 = canvas.height / 2;
+    let xPosDemo3 = (canvas.width - (textDemo3.length * letterSpacingDemo3)) / 2;
+
+    for (let i = 0; i < textDemo3.length; i++) {
+      const letter = new LetterDemo3(xPosDemo3, yPositionDemo3, textDemo3[i]);
+      lettersDemo3.push(letter);
+      xPosDemo3 += letterSpacingDemo3;
+    }
+
+    const lettersDemo4 = [];
+    const textDemo4 = 'Demo 4';
+    const letterSpacingDemo4 = 120;
+    const yPositionDemo4 = canvas.height / 2;
+    let xPosDemo4 = (canvas.width - (textDemo4.length * letterSpacingDemo4)) / 2;
+
+    for (let i = 0; i < textDemo4.length; i++) {
+      const letter = new LetterDemo4(xPosDemo4, yPositionDemo4, textDemo4[i]);
+      lettersDemo4.push(letter);
+      xPosDemo4 += letterSpacingDemo4;
+    }
+
+    const lettersDemo5 = [];
+    const textDemo5 = 'Demo 5';
+    const letterSpacingDemo5 = 120;
+    const yPositionDemo5 = canvas.height / 2;
+    let xPosDemo5 = (canvas.width - (textDemo5.length * letterSpacingDemo5)) / 2;
+
+    for (let i = 0; i < textDemo5.length; i++) {
+      const letter = new LetterDemo5(xPosDemo5, yPositionDemo5, textDemo5[i]);
+      lettersDemo5.push(letter);
+      xPosDemo5 += letterSpacingDemo5;
+    }
+
+    // Animation loops for each demo
+    function animateDemo1() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      for (const letter of lettersDemo1) {
+        letter.update();
+        letter.draw();
+      }
+      requestAnimationFrame(animateDemo1);
+    }
+
+    function animateDemo2() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      for (const letter of lettersDemo2) {
+        letter.update();
+        letter.draw();
+      }
+      requestAnimationFrame(animateDemo2);
+    }
+
+    function animateDemo3() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      for (const letter of lettersDemo3) {
+        letter.update();
+        letter.draw();
+      }
+      requestAnimationFrame(animateDemo3);
+    }
+
+    function animateDemo4() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      for (const letter of lettersDemo4) {
+        letter.update();
+        letter.draw();
+      }
+      requestAnimationFrame(animateDemo4);
+    }
+
+    function animateDemo5() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      for (const letter of lettersDemo5) {
+        letter.update();
+        letter.draw();
+      }
+      requestAnimationFrame(animateDemo5);
+    }
+
+    // Switch between demos
+    let currentDemoIndex = 0;
+    function switchDemo() {
+      clearInterval(demoIntervalId);
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      currentDemoIndex++;
+      const nextDemoIndex = currentDemoIndex % 5;
+
+      if (nextDemoIndex === 0) {
+        for (let i = 0; i < textDemo1.length; i++) {
+          lettersDemo1[i].x = xPosDemo1;
+          lettersDemo1[i].y = yPositionDemo1;
+          xPosDemo1 += letterSpacingDemo1;
+        }
+        animateDemo1();
+      } else if (nextDemoIndex === 1) {
+        for (let i = 0; i < textDemo2.length; i++) {
+          lettersDemo2[i].x = xPosDemo2;
+          lettersDemo2[i].y = yPositionDemo2;
+          xPosDemo2 += letterSpacingDemo2;
+        }
+        animateDemo2();
+      } else if (nextDemoIndex === 2) {
+        for (let i = 0; i < textDemo3.length; i++) {
+          lettersDemo3[i].x = xPosDemo3;
+          lettersDemo3[i].y = yPositionDemo3;
+          xPosDemo3 += letterSpacingDemo3;
+        }
+        animateDemo3();
+      } else if (nextDemoIndex === 3) {
+        for (let i = 0; i < textDemo4.length; i++) {
+          lettersDemo4[i].x = xPosDemo4;
+          lettersDemo4[i].y = yPositionDemo4;
+          xPosDemo4 += letterSpacingDemo4;
+        }
+        animateDemo4();
+      } else {
+        for (let i = 0; i < textDemo5.length; i++) {
+          lettersDemo5[i].x = xPosDemo5;
+          lettersDemo5[i].y = yPositionDemo5;
+          xPosDemo5 += letterSpacingDemo5;
+        }
+        animateDemo5();
+      }
+    }
+
+    // Start the initial demo
+    animateDemo1();
+
+    // Set interval to switch demos every 3 seconds (3000 milliseconds)
+    const demoIntervalId = setInterval(switchDemo, 3000);
+
+    // Play the sound loop
+    sound.play();
+  </script>
+</body>
+</html>
