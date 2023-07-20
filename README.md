@@ -235,5 +235,113 @@ A popular thing was to make simple visual art, including sound and visual effect
 </html>
 ```
 
+The code was usally written in Assembly language, this is a 6502 example: 
+
+```assembly
+
+; Set up memory locations
+sound_loop = $8000    ; Sound loop address
+canvas_width = $8100  ; Canvas width
+canvas_height = $8102 ; Canvas height
+canvas_ptr = $8104    ; Canvas address pointer
+letter_xpos = $8106   ; Current letter x position
+letter_ypos = $8108   ; Current letter y position
+
+; Load sound loop address
+LDA #<sound_loop
+STA sound_loop
+LDA #>sound_loop
+STA sound_loop + 1
+
+; Set canvas width and height
+LDA #<canvas_width
+STA canvas_width
+LDA #>canvas_width
+STA canvas_width + 1
+
+LDA #<canvas_height
+STA canvas_height
+LDA #>canvas_height
+STA canvas_height + 1
+
+; Load canvas address
+LDA #<demoCanvas
+STA canvas_ptr
+LDA #>demoCanvas
+STA canvas_ptr + 1
+
+; Initialize letter positions
+LDA #<initial_xpos
+STA letter_xpos
+LDA #>initial_xpos
+STA letter_xpos + 1
+
+LDA #<initial_ypos
+STA letter_ypos
+LDA #>initial_ypos
+STA letter_ypos + 1
+
+; Initialize sound loop
+LDA #$00
+STA $D401  ; Set initial volume
+LDA #$0C
+STA $D418  ; Set initial frequency
+LDA #$10
+STA $D41A  ; Set initial waveform
+
+; Start animation loop
+loop:
+  ; Clear the canvas
+  LDA #$00
+  STA $D800, X
+  STA $D900, X
+
+  ; Update letter position
+  LDA letter_xpos
+  ADC #<letter_speed
+  STA letter_xpos
+  LDA letter_xpos + 1
+  ADC #>letter_speed
+  STA letter_xpos + 1
+
+  ; Update letter color
+  LDA #$00
+  STA $D800, X
+  STA $D900, X
+  STA $D901, X
+  LDA #<random_color
+  STA $D900, X
+  LDA #>random_color
+  STA $D901, X
+
+  ; Draw the letter
+  LDA letter_xpos
+  STA $D800, X
+  LDA letter_xpos + 1
+  STA $D900, X
+
+  ; Check for loop end condition
+  LDA letter_xpos
+  CMP #<loop_end
+  BNE loop
+
+  LDA letter_xpos + 1
+  CMP #>loop_end
+  BNE loop
+
+  ; Restart loop
+  JMP loop
+
+; Data section
+initial_xpos: .word 100
+initial_ypos: .word 200
+letter_speed: .word 2
+random_color: .word $C0DE
+loop_end: .word $FFFF
+
+; Rest of the code...
+
+```
+
 
 
