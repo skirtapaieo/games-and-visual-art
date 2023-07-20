@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Demo Scene</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="demoCanvas"></canvas>
+
+  <script>
+    // Get the canvas element
+    const canvas = document.getElementById('demoCanvas');
+    const context = canvas.getContext('2d');
+
+    // Set the canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Define a particle class
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.radius = Math.random() * 20 + 5;
+        this.dx = Math.random() * 4 - 2;
+        this.dy = Math.random() * 4 - 2;
+      }
+
+      update() {
+        this.x += this.dx;
+        this.y += this.dy;
+
+        // Bounce off the walls
+        if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+          this.dx *= -1;
+        }
+
+        if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+          this.dy *= -1;
+        }
+      }
+
+      draw() {
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        context.fillStyle = this.color;
+        context.fill();
+        context.closePath();
+      }
+    }
+
+    // Create an array of particles
+    const particles = [];
+    for (let i = 0; i < 100; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+      particles.push(new Particle(x, y, color));
+    }
+
+    // Animation loop
+    function animate() {
+      // Clear the canvas
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw particles
+      for (const particle of particles) {
+        particle.update();
+        particle.draw();
+      }
+
+      // Request the next animation frame
+      requestAnimationFrame(animate);
+    }
+
+    // Start the animation
+    animate();
+  </script>
+</body>
+</html>
+
