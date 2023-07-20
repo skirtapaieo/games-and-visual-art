@@ -119,7 +119,7 @@ REM Inventory data
 4000 REM 1
 ```
 
-### Visual art on Atari
+### Visual art on Atari 600 XL
 
 A popular thing was to make simple visual art, including sound and visual effects, like side-scrolling texts: 
 
