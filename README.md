@@ -7,7 +7,7 @@
 
 |                     | Atari 600XL                       | Intellivision ECS                                   | ABC 80                     |
 |---------------------|-----------------------------------|-----------------------------------------------------|----------------------------|
-| Launch Year         | 1983                              | 1983                                                | 1978                       |
+| **Launch Year**         | **1983**                              | **1983**                                                | **1978**                       |
 | Graphics Capabilities | 320x192 resolution with a 256-color palette | 159x192 in 16 colors | Text and block graphics, monochrome |
 | Sound Capabilities  | 4 sound channels with a range of three octaves | 3 sound channels, noise generator | Simple beeper |
 | Controller/Input    | Keyboard and Joystick             | Intellivision unique controller                     | Full-size Keyboard         |
