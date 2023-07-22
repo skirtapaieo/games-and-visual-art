@@ -1,12 +1,28 @@
 # games-and-visual-art
 
 
-from the start: 
+# Early days 
 
 
 
+|                     | Atari 600XL                       | Intellivision ECS                                   | ABC 80                     |
+|---------------------|-----------------------------------|-----------------------------------------------------|----------------------------|
+| Launch Year         | 1983                              | 1983                                                | 1978                       |
+| Graphics Capabilities | 320x192 resolution with a 256-color palette | 159x192 in 16 colors | Text and block graphics, monochrome |
+| Sound Capabilities  | 4 sound channels with a range of three octaves | 3 sound channels, noise generator | Simple beeper |
+| Controller/Input    | Keyboard and Joystick             | Intellivision unique controller                     | Full-size Keyboard         |
+| Game Library        | Large, with many popular arcade ports | Varied, with a mix of original and licensed titles | Limited, mostly educational and simple games |
+| Primary Purpose     | Gaming and Home Computing         | Gaming and Basic Computing                          | Education and Business Computing |
+| Notable/Advanced Games | "Star Raiders" (Doug Neubauer), "Ballblazer" (Lucasfilm Games), "Rescue on Fractalus!" (Lucasfilm Games) | "Utopia" (Don Daglow), "B-17 Bomber" (John Sohl, Blue Sky Rangers), "Advanced Dungeons & Dragons: Treasure of Tarmin" (Tom Loughry, APh Technological Consulting) | "Mutant Camels" (Llamasoft), "Space Action" (unknown), "Shoot the Moon" (unknown) |
+| Development Method  | Mostly Assembly language (6502 Assembly) | Mostly Assembly language (CP1610 Assembly) | Mostly Assembly language (Z80 Assembly), and BASIC for simpler games |
+| Developers of Hit Games | Various, including in-house at Atari and third-party companies like Lucasfilm Games | Various, including in-house at Mattel (Blue Sky Rangers) and third-party companies like APh Technological Consulting | Various, including independent developers like Llamasoft |
+| Successor Platform (Launch Year) | Atari 800XL (1983) | Intellivision II (1982) | ABC 800 (1981) |
 
-## Intellivision 
+Please note that the exact successor and its launch year can vary depending on how you define "successor".
+
+
+
+## Intellivision (1983)
 
 
 The Intellivision Entertainment Computer System (ECS) was essentially an add-on for the Intellivision that turned it into a rudimentary personal computer, with the capability to run a variant of the BASIC programming language.
@@ -80,7 +96,12 @@ In conclusion, ECS BASIC has limitations. It was designed for educational purpos
 1020 RETURN
 ```
 
-## Atari 600 XL 
+## ABC-80 
+
+
+
+
+## Atari 600 XL (1983)
 
 The Atari 600XL, part of the Atari 8-bit family, was launched in 1983 as a low-end replacement for the Atari 400. It came with 16KB of RAM which could be expanded up to 64KB using Atari's 1064 memory module. It was equipped with a MOS Technology 6502B CPU, ANTIC and GTIA graphics chips, a POKEY sound chip, a ROM cartridge slot, and ports for various devices. It operated on the Atari 8-bit OS and Atari BASIC language was typically used for programming.
 
