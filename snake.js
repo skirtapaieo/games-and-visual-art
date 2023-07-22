@@ -63,12 +63,16 @@ function gameOver() {
 
 function startGame() {
     startScreen.style.display = "none";
+    gameOverScreen.style.display = "none";
     score = 0;
     scoreSpan.textContent = score;
-    snake = [{ top: 50, left: 50 }];
-    apple = createDot(0, 0, "apple", "apple");
-    gameBoard.appendChild(apple);
+    snake = [{ top: 150, left: 150 }];
     appleIndex = Math.floor(Math.random() * 30);
+    let appleLeft = appleIndex * 10;
+    let appleTop = appleIndex * 10;
+    apple.style.left = `${appleLeft}px`;
+    apple.style.top = `${appleTop}px`;
+    currentDirection = "ArrowRight";
     dotInterval = setInterval(() => {
         updateSnake();
         drawSnake();
@@ -82,6 +86,7 @@ function startGame() {
         }
     });
 }
+
 
 function restartGame() {
     gameOverScreen.style.display = "none";
