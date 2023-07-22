@@ -18,8 +18,6 @@
 | Developers of Hit Games | Various, including in-house at Atari and third-party companies like Lucasfilm Games | Various, including in-house at Mattel (Blue Sky Rangers) and third-party companies like APh Technological Consulting | Various, including independent developers like Llamasoft |
 | Successor Platform (Launch Year) | Atari 800XL (1983) | Intellivision II (1982) | ABC 800 (1981) |
 
-Please note that the exact successor and its launch year can vary depending on how you define "successor".
-
 
 
 ## Intellivision (1983)
