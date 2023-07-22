@@ -27,18 +27,16 @@ function updateSnake() {
         case "ArrowDown": head.top += 10; break;
     }
     snake.unshift(head);
-    if (appleIndex !== 0) {
-        snake.pop();
-    } else {
-        appleIndex = Math.floor(Math.random() * 30);
-        let appleLeft = appleIndex * 10;
-        let appleTop = appleIndex * 10;
+    if (head.left == parseInt(apple.style.left) && head.top == parseInt(apple.style.top)) {
+        score += Math.round(100 / snake.length);
+        scoreSpan.textContent = score;
+        let appleLeft = Math.floor(Math.random() * 30) * 10;
+        let appleTop = Math.floor(Math.random() * 30) * 10;
         apple.style.left = `${appleLeft}px`;
         apple.style.top = `${appleTop}px`;
-        score += 100;
-        scoreSpan.textContent = score;
+    } else {
+        snake.pop();
     }
-    appleIndex--;
     if (head.left < 0 || head.left > 290 || head.top < 0 || head.top > 290 ||
         snake.find((dot, index) => index !== 0 && dot.left === head.left && dot.top === head.top)) {
         gameOver();
@@ -92,6 +90,9 @@ function restartGame() {
     gameOverScreen.style.display = "none";
     startGame();
 }
+
+let apple = createDot(0, 0, "apple", "apple");
+gameBoard.appendChild(apple);
 
 window.onload = () => {
     startScreen.style.display = "block";
