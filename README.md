@@ -272,6 +272,26 @@ const game = new Phaser.Game(config);
 
 ``` 
 
+### Alternatives to Phaser (for 2D games) 
+
+There are numerous alternatives to Phaser for 2D game development in JavaScript. Here's a comparison table of a few alternatives:
+
+| Framework       | Ease of Use  | Community | Documentation | Performance | Features |
+|-----------------|--------------|-----------|---------------|-------------|----------|
+| **Phaser**      | High         | Large     | Excellent     | High        | Extensive including physics, animation, sound, etc. |
+| **Pixi.js**     | Medium-High  | Large     | Good          | High        | Primarily a rendering library. Need to implement game logic yourself or use additional libraries. |
+| **CreateJS**    | Medium       | Medium    | Good          | High        | A suite of modular libraries that provide 2D content, sound, tweening, and interaction. |
+| **MelonJS**     | Medium       | Small     | Good          | Medium      | Lightweight. Good for tile-based games. Includes physics and collision detection. |
+| **Crafty.js**   | Medium       | Small     | Good          | Medium      | Component-based architecture. Good for smaller, simpler games. |
+| **Konva.js**    | High         | Medium    | Good          | Medium      | More focused on 2D drawing and animations. Need to implement game logic yourself. |
+
+1. **Ease of Use:** This indicates how beginner-friendly the framework is.
+2. **Community:** A larger community often means more resources, tutorials, and third-party plugins available.
+3. **Documentation:** Good documentation is crucial for learning the framework and troubleshooting issues.
+4. **Performance:** This gives an idea of how efficiently the framework can render games, which can be important for more complex or resource-intensive games.
+5. **Features:** This includes built-in capabilities like physics, animation, sound, tilemaps, etc. Some frameworks are more barebones and only handle rendering, leaving you to implement game mechanics yourself or use additional libraries.
+
+Your choice of framework will depend on your needs and the type of game you're planning to create. Phaser is a robust and popular choice, but the others have their strengths as well. For example, Pixi.js is a great choice if you want a powerful, efficient rendering library and don't mind implementing game mechanics yourself or using additional libraries. On the other hand, if you're making a simple, small game, Crafty.js's component-based architecture could be a good fit.
 ## Atari 600 XL (1983)
 
 The Atari 600XL, part of the Atari 8-bit family, was launched in 1983 as a low-end replacement for the Atari 400. It came with 16KB of RAM which could be expanded up to 64KB using Atari's 1064 memory module. It was equipped with a MOS Technology 6502B CPU, ANTIC and GTIA graphics chips, a POKEY sound chip, a ROM cartridge slot, and ports for various devices. It operated on the Atari 8-bit OS and Atari BASIC language was typically used for programming.
