@@ -18,7 +18,7 @@
 | Developers of Hit Games | Various, including in-house at Atari and third-party companies like Lucasfilm Games | Various, including in-house at Mattel (Blue Sky Rangers) and third-party companies like APh Technological Consulting | Various, including independent developers like Llamasoft |
 | Successor Platform (Launch Year) | Atari 800XL (1983) | Intellivision II (1982) | ABC 800 (1981) |
 
-
+<br>
 
 ## Intellivision (1983)
 
@@ -93,6 +93,8 @@ In conclusion, ECS BASIC has limitations. It was designed for educational purpos
 1010 IF PEEK(53264) AND 3 THEN PRINT "Collision Detected."
 1020 RETURN
 ```
+
+<br>
 
 ## ABC-80 
 
