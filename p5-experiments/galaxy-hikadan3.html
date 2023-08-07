@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    </head>
+    <body>
+        <script>
+            // Declare global variables
+            let k = 0, x, y, a, b, i, n;
+
+            // The setup function runs once when the program starts
+            function setup() {
+              // Create an 800x800 pixel canvas
+              createCanvas(800, 800);
+              // Set the color mode to HSB for easy color changes
+              colorMode(HSB);
+            }
+
+            // The draw function runs continuously after setup()
+            function draw() {
+              // Set the background color to black
+              background(0);
+
+              // For each point around the circumference of a circle
+              for (i = 0; i < TWO_PI; i += PI / 10000) {
+                // Set the stroke (outline) color to a random color
+                stroke(random(0, 255), 255, 255);
+
+                // Initialize 'a' and 'b' for the calculation
+                a = i;
+                b = 50;
+                y = TWO_PI;
+
+                // Perform a series of transformations and draw a point
+                for (n = 0; n < 9; n++) {
+                  y = b + k * sin(a);
+                  x = a + y;
+                  point(x % TWO_PI * 400 / PI, (y + PI) % TWO_PI * 400 / PI);
+                  a = x;
+                  b = y;
+                }
+              }
+              // Increment 'k' slightly
+              k += 0.003;
+            }
+        </script>
+    </body>
+</html>

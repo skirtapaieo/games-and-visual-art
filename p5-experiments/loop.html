@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Looper</title>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        z-index: 1;
+      }
+
+      #overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3em;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe id="looper"></iframe>
+    <div id="overlay">hikadan</div>
+    <script>
+      // List of pages to loop through
+      var pages = ["galaxy-hikadan.html", "galaxy-hikadan2.html", "galaxy-hikadan3.html"];
+
+      // Counter for the current page
+      var i = 0;
+
+      // Function to update the iframe source
+      function updateFrame() {
+        // Fade in overlay
+        document.getElementById("overlay").style.opacity = "1";
+
+        // After the fade in is complete, change the iframe src
+        setTimeout(function() {
+          document.getElementById("looper").src = pages[i];
+          i = (i + 1) % pages.length; // Loop back to the start when we reach the end of the array
+
+          // After the src is changed, fade out overlay
+          setTimeout(function() {
+            document.getElementById("overlay").style.opacity = "0";
+          }, 500);
+        }, 500);
+      }
+
+      // Set the initial iframe source
+      updateFrame();
+
+      // Update the iframe source every 3 seconds
+      setInterval(updateFrame, 3000);
+    </script>
+  </body>
+</html>

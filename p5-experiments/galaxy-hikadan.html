@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    </head>
+    <body>
+        <script>
+            // Declare global variables for rotation, noise offset, and calculated point
+            let r = 0, n, p;
+
+            // The setup function runs once when the program starts
+            function setup() {
+              // Create a 720x720 pixel canvas
+              createCanvas(720, 720);
+              // Set the stroke (outline) color to white
+              stroke(255);
+            }
+
+            // The draw function runs continuously after setup()
+            function draw() {
+              // Set the background color to black
+              background(0);
+              // Shift the origin to the center of the canvas
+              translate(360, 360);
+              // Call the custom function 'a' with argument 720
+              a(720);
+              // Increment the rotation variable by a small amount
+              r += PI / 9999;
+            }
+
+            // Custom function 'a' to draw points and recursively call itself
+            function a(d) {
+              // Only continue if 'd' is greater than 9 (to avoid infinite recursion)
+              if (d > 9) {
+                // Rotate the canvas by 'r' radians  (1 radian = 57.3 degrees)
+                rotate(r);
+                // Loop 999 times
+                for (n = 0; n < 999; n++) {
+                  // Calculate the point 'p' using a noise function
+                  p = d - 50 * (1 - 2 * noise(d * n));
+                  // Draw a point at the calculated (x, y) location
+                  point(p * sin(n), p * 2 * cos(n));
+                }
+                // Recursively call function 'a' with 'd' reduced by 10%
+                a(d * 0.9);
+              }
+            }
+        </script>
+    </body>
+</html>
