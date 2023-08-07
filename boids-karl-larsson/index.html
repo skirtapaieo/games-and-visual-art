@@ -1,0 +1,77 @@
+
+<script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.135.0/build/three.module.js';
+
+    var renderer, scene, camera, boids = [];
+
+    function init() {
+        // create scene, camera and renderer
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 50;
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // create a basic triangle to represent a bird
+        var geometry = new THREE.BufferGeometry();
+        var vertices = new Float32Array([
+            -0.5, -0.5, 0.0,
+            0.5, -0.5, 0.0,
+            0.0, 0.5, 0.0
+        ]);
+        geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+
+        var material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+
+        // put bird into an array of boids
+        for (var i = 0; i < 100; i++) {
+            var bird = new THREE.Mesh(geometry, material);
+            bird.position.x = Math.random() * 10 - 5;
+            bird.position.y = Math.random() * 10 - 5;
+            bird.position.z = Math.random() * 10 - 5;
+            bird.velocity = new THREE.Vector3(Math.random() * 0.02 - 0.01, Math.random() * 0.02 - 0.01, Math.random() * 0.02 - 0.01);
+            boids.push(bird);
+            scene.add(bird);
+        }
+
+        // add background image
+        var loader = new THREE.TextureLoader();
+        loader.load('kl.jpg',
+            function(texture){
+                scene.background = texture;
+            },
+            undefined,
+            function(err) {
+                // set background color to black if the image cannot be loaded
+                scene.background = new THREE.Color(0x000000);
+            }
+        );
+
+        animate();
+    }
+
+    function animate() {
+        boids.forEach(function(boid) {
+            boid.position.add(boid.velocity);
+            boid.rotation.set(boid.velocity.y, boid.velocity.x, 0);
+
+            // Bounce back if boid goes out of bounds
+            if (boid.position.x < -25 || boid.position.x > 25) {
+                boid.velocity.x = -boid.velocity.x;
+            }
+            if (boid.position.y < -25 || boid.position.y > 25) {
+                boid.velocity.y = -boid.velocity.y;
+            }
+            if (boid.position.z < -25 || boid.position.z > 25) {
+                boid.velocity.z = -boid.velocity.z;
+            }
+        });
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+    }
+
+    init();
+</script>

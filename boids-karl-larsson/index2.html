@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3D Boids Animation</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.135.0/build/three.module.js';
+
+        var renderer, scene, camera, boids = [];
+
+        function init() {
+            // create scene, camera and renderer
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 50;
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // create a basic triangle to represent a bird
+            var geometry = new THREE.BufferGeometry();
+            var vertices = new Float32Array([
+                -0.5, -0.5, 0.0,
+                0.5, -0.5, 0.0,
+                0.0, 0.5, 0.0
+            ]);
+            geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+
+            var material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+
+            // put bird into an array of boids
+            for (var i = 0; i < 100; i++) {
+                var bird = new THREE.Mesh(geometry, material);
+                bird.position.x = Math.random() * 10 - 5;
+                bird.position.y = Math.random() * 10 - 5;
+                bird.position.z = Math.random() * 10 - 5;
+                bird.velocity = new THREE.Vector3(Math.random() * 0.02 - 0.01, Math.random() * 0.02 - 0.01, Math.random() * 0.02 - 0.01);
+                boids.push(bird);
+                scene.add(bird);
+            }
+
+            // add background image
+            var loader = new THREE.TextureLoader();
+            loader.load('kl.jpg',
+                function(texture){
+                    scene.background = texture;
+                },
+                undefined,
+                function(err) {
+                    // set background color to black if the image cannot be loaded
+                    scene.background = new THREE.Color(0xFFF);
+                }
+            );
+
+            animate();
+        }
+
+        function animate() {
+            // Calculate average velocity of all boids
+            var averageVelocity = new THREE.Vector3(0, 0, 0);
+            boids.forEach(function(bird) {
+                averageVelocity.add(bird.velocity);
+            });
+            averageVelocity.divideScalar(boids.length);
+
+            boids.forEach(function(bird) {
+                // Make each bird's velocity a tiny bit closer to the average velocity
+                bird.velocity.lerp(averageVelocity, 0.05);
+
+                bird.position.add(bird.velocity);
+                bird.rotation.set(bird.velocity.y, bird.velocity.x, 0);
+
+                // Bounce back if bird goes out of bounds
+                if (bird.position.x < -25 || bird.position.x > 25) {
+                    bird.velocity.x = -bird.velocity.x;
+                }
+                if (bird.position.y < -25 || bird.position.y > 25) {
+                    bird.velocity.y = -bird.velocity.y;
+                }
+                if (bird.position.z < -25 || bird.position.z > 25) {
+                    bird.velocity.z = -bird.velocity.z;
+                }
+            });
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            init();
+        });
+    </script>
+</body>
+</html>
