@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5/1.4.0/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let planets = [];
+      let sun;
+
+      function setup() {
+        createCanvas(600, 600);
+        sun = new Planet(0, 50, 0);
+        sun.spawnMoons(4, 1);
+      }
+
+      function draw() {
+        background(0);
+        translate(width / 2, height / 2);
+        sun.show();
+        sun.orbit();
+      }
+
+      class Planet {
+        constructor(distance, radius, angle) {
+          this.distance = distance;
+          this.radius = radius;
+          this.angle = angle;
+          this.planets = [];
+          this.orbitSpeed = random(0.01, 0.03);
+        }
+
+        spawnMoons(total, level) {
+          for (let i = 0; i < total; i++) {
+            let radius = this.radius / (level * 2);
+            let distance = random(50, 150);
+            let angle = random(TWO_PI);
+            this.planets.push(new Planet(distance, radius, angle));
+            if (level < 3) {
+              this.planets[i].spawnMoons(floor(random(0, 4)), level + 1);
+            }
+          }
+        }
+
+        orbit() {
+          this.angle += this.orbitSpeed;
+          for (let i in this.planets) {
+            this.planets[i].orbit();
+          }
+        }
+
+        show() {
+          push();
+          rotate(this.angle);
+          translate(this.distance, 0);
+          fill(255, 100);
+          ellipse(0, 0, this.radius * 2);
+          for (let i in this.planets) {
+            this.planets[i].show();
+          }
+          pop();
+        }
+      }
+    </script>
+  </body>
+</html>
