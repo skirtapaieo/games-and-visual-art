@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sine Wave and Cube</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let angle = 0;
+      let waveOffset = 0;
+      let amplitudeOffset = 0;
+      const cubeSize = 100;
+
+      function setup() {
+        createCanvas(800, 600, WEBGL); // Use WEBGL for 3D graphics
+      }
+
+      function draw() {
+        background(0);
+
+        // Draw 2D sine wave
+        push(); // Save current transformation matrix
+        translate(-width / 2, -height / 2); // Move origin back to bottom-left
+        stroke(255);
+        noFill();
+        beginShape();
+        for (let x = 0; x <= width; x += 5) {
+          let amplitude = map(sin(amplitudeOffset + x * 0.01), -1, 1, 50, 100);
+          let y = map(sin(waveOffset + x * 0.01), -1, 1, 200, 400);
+          y += amplitude * sin(waveOffset + x * 0.05);
+          vertex(x, y);
+        }
+        endShape();
+        waveOffset += 0.05;
+        pop(); // Restore original transformation matrix
+
+        // Draw 3D rotating cube
+        translate(0, 0, 0); // Move origin to center
+        rotateX(angle);
+        rotateY(angle);
+        rotateZ(angle);
+
+        // Simulating the stroke by drawing lines
+        stroke(255); // White edges
+        noFill();
+        let halfSize = cubeSize / 2;
+        beginShape(LINES);
+        vertex(-halfSize, -halfSize, -halfSize);
+        vertex(halfSize, -halfSize, -halfSize);
+        vertex(halfSize, -halfSize, -halfSize);
+        vertex(halfSize, halfSize, -halfSize);
+        vertex(halfSize, halfSize, -halfSize);
+        vertex(-halfSize, halfSize, -halfSize);
+        vertex(-halfSize, halfSize, -halfSize);
+        vertex(-halfSize, -halfSize, -halfSize);
+        vertex(-halfSize, -halfSize, halfSize);
+        vertex(halfSize, -halfSize, halfSize);
+        vertex(halfSize, -halfSize, halfSize);
+        vertex(halfSize, halfSize, halfSize);
+        vertex(halfSize, halfSize, halfSize);
+        vertex(-halfSize, halfSize, halfSize);
+        vertex(-halfSize, halfSize, halfSize);
+        vertex(-halfSize, -halfSize, halfSize);
+        vertex(-halfSize, -halfSize, -halfSize);
+        vertex(-halfSize, -halfSize, halfSize);
+        vertex(halfSize, -halfSize, -halfSize);
+        vertex(halfSize, -halfSize, halfSize);
+        vertex(halfSize, halfSize, -halfSize);
+        vertex(halfSize, halfSize, halfSize);
+        vertex(-halfSize, halfSize, -halfSize);
+        vertex(-halfSize, halfSize, halfSize);
+        endShape();
+
+        angle += 0.05;
+      }
+    </script>
+  </body>
+</html>
