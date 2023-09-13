@@ -13,26 +13,35 @@
         { name: "Venus", distance: 108, radius: 4 },
         { name: "Earth", distance: 150, radius: 5 },
         { name: "Mars", distance: 228, radius: 3 },
+        { name: "Jupiter", distance: 320, radius: 10 },
+        { name: "Saturn", distance: 400, radius: 8 },
+        { name: "Uranus", distance: 480, radius: 7 },
+        { name: "Neptune", distance: 560, radius: 6 },
+        { name: "Pluto", distance: 640, radius: 1 },
       ];
 
       function setup() {
-        createCanvas(600, 600);
+        createCanvas(800, 800);
       }
 
       function draw() {
-        background(255); // Making space white
+        background(255);
         translate(width / 2, height / 2);
 
-        // Draw the sun
-        fill(0); // Black color for the sun
-        ellipse(0, 0, 10, 10); // Reduced size for the sun
+        // Draw Sun
+        fill(0);
+        ellipse(0, 0, 10, 10);
 
-        // Draw the planets
+        // Draw and trace the orbits
         for (let planet of planets) {
+          stroke(200);
+          noFill();
+          ellipse(0, 0, planet.distance * 2, planet.distance * 2);
+
           push();
           rotate(frameCount * 0.01);
           translate(planet.distance, 0);
-          fill(0); // Black color for the planets
+          fill(0);
           ellipse(0, 0, planet.radius * 2, planet.radius * 2);
           pop();
         }

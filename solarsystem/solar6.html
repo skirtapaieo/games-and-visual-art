@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let planets = [
+        { name: "Mercury", distance: 40, radius: 2, angle: 0, orbit: [] },
+        { name: "Venus", distance: 70, radius: 4, angle: 0.2, orbit: [] },
+        {
+          name: "Earth",
+          distance: 100,
+          radius: 5,
+          angle: 0.4,
+          orbit: [],
+          moons: [{ distance: 10, radius: 1 }],
+        },
+        {
+          name: "Mars",
+          distance: 130,
+          radius: 3,
+          angle: 0.6,
+          orbit: [],
+          moons: [{ distance: 10, radius: 1 }],
+        },
+        { name: "Jupiter", distance: 180, radius: 10, angle: 0.8, orbit: [] },
+        { name: "Saturn", distance: 220, radius: 8, angle: 1, orbit: [] },
+        { name: "Uranus", distance: 260, radius: 7, angle: 1.2, orbit: [] },
+        { name: "Neptune", distance: 300, radius: 6, angle: 1.4, orbit: [] },
+        { name: "Pluto", distance: 330, radius: 1, angle: 1.6, orbit: [] },
+      ];
+
+      function setup() {
+        createCanvas(800, 800);
+      }
+
+      function draw() {
+        background(255);
+        translate(width / 2, height / 2);
+
+        // Make sun flash and be a little bigger
+        let sunSize = map(sin(frameCount * 0.05), -1, 1, 18, 22);
+        fill(255, 204, 0);
+        ellipse(0, 0, sunSize, sunSize);
+
+        // Draw and trace the orbits
+        stroke(0);
+        for (let planet of planets) {
+          let x = planet.distance * cos(planet.angle);
+          let y = planet.distance * sin(planet.angle);
+
+          // Trace orbit
+          planet.orbit.push(createVector(x, y));
+          if (planet.orbit.length > 500) {
+            planet.orbit.splice(0, 1);
+          }
+          noFill();
+          beginShape();
+          for (let vec of planet.orbit) {
+            vertex(vec.x, vec.y);
+          }
+          endShape();
+
+          // Draw planet
+          fill(0);
+          ellipse(x, y, planet.radius * 2, planet.radius * 2);
+
+          // Draw planet name
+          fill(0);
+          textSize(12);
+          textAlign(CENTER);
+          text(planet.name, x, y - planet.radius - 10);
+
+          // Update angle for the next frame
+          planet.angle += 0.01;
+
+          // Draw moons if they exist
+          if (planet.moons) {
+            for (let moon of planet.moons) {
+              let moonX = x + moon.distance * cos(planet.angle * 4);
+              let moonY = y + moon.distance * sin(planet.angle * 4);
+              fill(100);
+              ellipse(moonX, moonY, moon.radius * 2, moon.radius * 2);
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

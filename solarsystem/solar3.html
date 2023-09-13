@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let planets = [
+        { name: "Mercury", distance: 29, radius: 2 },
+        { name: "Venus", distance: 54, radius: 4 },
+        { name: "Earth", distance: 75, radius: 5 },
+        { name: "Mars", distance: 114, radius: 3 },
+        { name: "Jupiter", distance: 160, radius: 10 },
+        { name: "Saturn", distance: 200, radius: 8 },
+        { name: "Uranus", distance: 240, radius: 7 },
+        { name: "Neptune", distance: 280, radius: 6 },
+        { name: "Pluto", distance: 320, radius: 1 },
+      ];
+
+      function setup() {
+        createCanvas(800, 800);
+      }
+
+      function draw() {
+        background(255);
+        translate(width / 2, height / 2);
+
+        // Draw Sun
+        fill(0);
+        ellipse(0, 0, 10, 10);
+
+        // Draw and trace the orbits
+        for (let planet of planets) {
+          stroke(200);
+          noFill();
+          scale(1, 0.8); // Making orbits elliptical
+          ellipse(0, 0, planet.distance * 2, planet.distance * 1.6);
+          scale(1, 1.25); // Reverting the scale for drawing planets
+
+          push();
+          rotate(frameCount * 0.01);
+          translate(planet.distance, 0);
+          fill(0);
+          ellipse(0, 0, planet.radius * 2, planet.radius * 2);
+          pop();
+        }
+      }
+    </script>
+  </body>
+</html>

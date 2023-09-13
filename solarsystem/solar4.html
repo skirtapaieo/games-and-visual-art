@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let planets = [
+        { name: "Mercury", distance: 40, radius: 2, angle: 0 },
+        { name: "Venus", distance: 70, radius: 4, angle: 0.2 },
+        { name: "Earth", distance: 100, radius: 5, angle: 0.4 },
+        { name: "Mars", distance: 130, radius: 3, angle: 0.6 },
+        { name: "Jupiter", distance: 180, radius: 10, angle: 0.8 },
+        { name: "Saturn", distance: 220, radius: 8, angle: 1 },
+        { name: "Uranus", distance: 260, radius: 7, angle: 1.2 },
+        { name: "Neptune", distance: 300, radius: 6, angle: 1.4 },
+        { name: "Pluto", distance: 330, radius: 1, angle: 1.6 },
+      ];
+
+      function setup() {
+        createCanvas(800, 800);
+      }
+
+      function draw() {
+        background(255);
+        translate(width / 2, height / 2);
+
+        // Draw Sun
+        fill(0);
+        ellipse(0, 0, 10, 10);
+
+        // Draw and trace the orbits
+        for (let planet of planets) {
+          push();
+          rotate(planet.angle);
+          translate(planet.distance, 0);
+
+          // Draw planet
+          fill(0);
+          ellipse(0, 0, planet.radius * 2, planet.radius * 2);
+
+          // Draw planet name
+          fill(0);
+          textSize(12);
+          textAlign(CENTER);
+          text(planet.name, 0, -planet.radius - 10);
+
+          // Update angle for next frame
+          planet.angle += 0.01;
+
+          pop();
+        }
+      }
+    </script>
+  </body>
+</html>
