@@ -8,9 +8,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
   </head>
   <body>
+    <button id="startButton">Start Audio</button>
     <script>
       let song;
       let fft;
+      let audioStarted = false;
 
       function preload() {
         song = loadSound("./laufey.mp3"); // Replace with the path to your audio file
@@ -18,13 +20,31 @@
 
       function setup() {
         createCanvas(720, 256);
-        song.loop();
-
         fft = new p5.FFT();
+
+        // Add an event listener to start audio when the button is clicked
+        document
+          .getElementById("startButton")
+          .addEventListener("click", toggleAudio);
+      }
+
+      function toggleAudio() {
+        if (!audioStarted) {
+          getAudioContext().resume();
+          song.loop();
+          audioStarted = true;
+        } else {
+          song.pause();
+          audioStarted = false;
+        }
       }
 
       function draw() {
         background(0);
+
+        if (!audioStarted) {
+          return;
+        }
 
         let spectrum = fft.analyze();
         noStroke();

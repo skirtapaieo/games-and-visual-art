@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laufey</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <button id="startButton">Start Audio</button>
+    <script>
+      let song;
+      let fft;
+      let audioStarted = false;
+
+      function preload() {
+        song = loadSound("./laufey.mp3"); // Replace with the path to your audio file
+      }
+
+      function setup() {
+        createCanvas(720, 256);
+        fft = new p5.FFT();
+
+        // Add an event listener to start audio when the button is clicked
+        document
+          .getElementById("startButton")
+          .addEventListener("click", toggleAudio);
+      }
+
+      function toggleAudio() {
+        if (!audioStarted) {
+          getAudioContext().resume();
+          song.loop();
+          audioStarted = true;
+        } else {
+          song.pause();
+          audioStarted = false;
+        }
+      }
+
+      <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laufey</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <button id="startButton">Start Audio</button>
+    <script>
+      let song;
+      let fft;
+      let audioStarted = false;
+
+      function preload() {
+        song = loadSound("./laufey.mp3"); // Replace with the path to your audio file
+      }
+
+      function setup() {
+        createCanvas(720, 256);
+        colorMode(HSB); // Set color mode to HSB
+        fft = new p5.FFT();
+
+        // Add an event listener to start audio when the button is clicked
+        document.getElementById("startButton").addEventListener("click", toggleAudio);
+      }
+
+
+      function toggleAudio() {
+        if (!audioStarted) {
+          getAudioContext().resume();
+          song.loop();
+          audioStarted = true;
+        } else {
+          song.pause();
+          audioStarted = false;
+        }
+      }
+
+      function draw() {
+  background(0);
+
+  if (!audioStarted) {
+    return;
+  }
+
+  let spectrum = fft.analyze();
+  noStroke();
+  for (let i = 0; i < spectrum.length; i++) {
+    let x = map(i, 0, spectrum.length, 0, width);
+    let h = map(spectrum[i], 0, 255, 0, height);
+
+    // Assign colors based on frequency (Hue)
+    let hue = map(i, 0, spectrum.length, 0, 360); // Map to hue
+    fill(hue, 100, 100); // Use hue for color
+
+    rect(x, height, width / spectrum.length, -h);
+  }
+}
+
+    </script>
+  </body>
+</html>
