@@ -10,7 +10,7 @@ Repo for when I get a visual idea or want to recreate something I did in the pas
 - [My first computers](/oldschool/README.md) - and some code for Intellivision ECS, Atari 600 (XL), ABC-80 (only in School)
 - [Transition between demo screens](/p5-experiments/loop.html)- i borrowed things from Hikadan (can't find you!) to test to move between various demo screens - for more about: P5js.org or something cool: https://p5-demos.glitch.me/
 - [Sinecube](/sinecube/sinecube2.html) - waves and geometry, initially done in Assembler (https://archive.org/details/Atari_ST-3D_Graphics_Programming/page/n3/mode/2up), now you use JavaScript/P5, with computers a billion times better :-)
-- Snake - used ChatGPT that stole it from the Internets, and when I asked it denied :-)
-- Solarsystem - seven iterations on a solarsystem :-)
+- [Snake](/snake/snake-rev1.html)- used ChatGPT for this, it it from the Internets (just google and see), and when I asked it about it it denied :-)
+- [Solarsystem](/solarsystem/solar7.html) - seven iterations on a solarsystem ...
 
 
