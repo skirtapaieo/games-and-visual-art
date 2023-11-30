@@ -6,7 +6,7 @@ Repo for when I get a visual idea or want to recreate something I did in the pas
 - [Atari 600 XL - lo-fi demo of animating letters and 8-bit music](/demo-atari600xl/600xl-visual-art-rev5.html) - originally made in Assembler, recreated using JavaScript
 - [Inventory-system](https://github.com/skirtapaieo/play-101/blob/main/Inventory-system/inventory.bas) - My first inventory program for my parents store - we came up with the idea to create article numbers with 1000's as spring season 1993 and so on - the program listed part of itself and then during inventory they entered the inventory of an article as a REM statement and then learned how to save and store on tape - so the program actually contained the inventory data as REM statements :-)
 - [Kuramoto](/kuramoto/kuramoto.py) - attempt to test Kuramoto model oscillations = a strong foundation helps synchronize things, using Matplotlib - metronomes explain it best: https://twitter.com/wonderofscience/status/1338823624518754304
-- Laufey - an equalizer etc using mp3 of the artist Laufey that my daughter like, using P5 sound library
+- [Laufey](/laufey/laufey5.html) - an equalizer etc using mp3 of the artist Laufey that my daughter like, using P5 sound library
 - OldSchool - my first computers, Intellivision ECS, Atari 600 (XL), ABC-80 (only in School)
 - P5 experiments - i borrowed things from Hikadan (can't find you!) to test to move between various demo screens - for more about: P5js.org or something cool: https://p5-demos.glitch.me/
 - Sinecube - waves and geometry, initially done in Assembler (https://archive.org/details/Atari_ST-3D_Graphics_Programming/page/n3/mode/2up), now you use JavaScript/P5, computers a billion times better
