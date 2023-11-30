@@ -9,7 +9,7 @@ Repo for when I get a visual idea or want to recreate something I did in the pas
 - [Laufey](/laufey/laufey5.html) - an equalizer etc using mp3 of the artist Laufey that my daughter like, using P5 sound library
 - [My first computers](/oldschool/README.md) - and some code for Intellivision ECS, Atari 600 (XL), ABC-80 (only in School)
 - [Transition between demo screens](/p5-experiments/loop.html)- i borrowed things from Hikadan (can't find you!) to test to move between various demo screens - for more about: P5js.org or something cool: https://p5-demos.glitch.me/
-- Sinecube - waves and geometry, initially done in Assembler (https://archive.org/details/Atari_ST-3D_Graphics_Programming/page/n3/mode/2up), now you use JavaScript/P5, computers a billion times better
+- [Sinecube](/sinecube/sinecube2.html) - waves and geometry, initially done in Assembler (https://archive.org/details/Atari_ST-3D_Graphics_Programming/page/n3/mode/2up), now you use JavaScript/P5, with computers a billion times better :-)
 - Snake - used ChatGPT that stole it from the Internets, and when I asked it denied :-)
 - Solarsystem - seven iterations on a solarsystem :-)
 
